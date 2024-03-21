@@ -1,9 +1,9 @@
 # Angel Cakes
-Este é um projeto que permite que o usuario crie monte o pedido como preferir, os bolinhos disponiveis aparem no cardapio para serem adicionados ao carrinho.
+Este é um projeto que permite que o usuário crie e monte o pedido conforme preferir. Os bolinhos disponíveis aparecem no cardápio para serem adicionados ao carrinho.
 
-O pedido então é enviado para o WhatsApp!
+O pedido é então enviado para o WhatsApp!
 
-Confira o resultado do site!
+Confira o resultado do site Clicando aqui: !
 <a href="https://angelcakes.shop/"> Angel Cakes </a>
 
 
@@ -13,8 +13,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - React js
 - TypeScript
-- Taiwild CSS
-- Shadcn
-- Git e Github
+- Tailwind CSS
+- Git e GitHub
 - Supabase 
 
