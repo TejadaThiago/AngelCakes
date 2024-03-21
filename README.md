@@ -12,7 +12,7 @@ Confira o resultado do site!
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - React js
-- JavaScript
+- TypeScript
 - Taiwild CSS
 - Shadcn
 - Git e Github
