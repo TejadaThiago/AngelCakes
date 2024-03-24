@@ -29,23 +29,41 @@ function CartProvider({ children }: CartProviderProps) {
 
   }
 
-  const removeItem = (id: number) => {
-    const itemsAfterRemove = items.map((item) => 
-      item.id === id 
-      ?
-      {
-        ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 0
-      }
-      :
-      item
-    )
-    setItems(itemsAfterRemove)
-  }
-
   const deleteItem = (id: number) => {
     const itemsAfterRemove = items.filter((item) => item.id !== id )
     setItems(itemsAfterRemove)
   }
+
+  const removeItem = (id: number) => {
+    const itemToRemove = items.find((item) => item.id === id);
+
+    // Verifica se o item existe
+    if (!itemToRemove) 
+      return
+  
+    if (itemToRemove.quantity === 1) {
+      const confirmRemove = window.confirm("Tem certeza de que deseja remover este item do carrinho?");
+      if (confirmRemove){
+        deleteItem(id)
+        return; // Se o usuário cancelar, sai da função
+      }
+    }
+    else{
+      const itemsAfterRemove = items.map((item) => 
+        item.id === id 
+        ?
+        {
+          ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 0
+        }
+        :
+        item
+      )
+      setItems(itemsAfterRemove)
+    }
+    
+  }
+
+  
 
   const clearCart = () => {
     setItems([]);

@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useContext } from "react"
 import CartContext, { CartItem } from "../contexts/CartContext"
 import { Trash } from "@phosphor-icons/react"
+import useCurrencyFormatter from "@/hooks/useCurrencyFormatter"
 
 
 
@@ -39,10 +41,10 @@ export function CartItems(){
           items.map(item => {
             items.length
             return(
-              <div key={item.id} className="border-b border-spacing-5 border-gray-300 flex justify-between bg-rd-300 items-start md:m-8" > 
+              <div key={item.id} className="border-b border-spacing-3 border-gray-300 flex justify-between bg-rd-300 items-start md:m-10" > 
                 
                 <div className="flex md:flex-1 bg-bue-300 py-5 ">
-                  <img className=' right-0 md:w-20 md:h-20  w-12 h-12 mr-2' src={item.imageName}></img>
+                  <img className=' right-0 md:w-20 md:h-20  w-10 h-10 mr-2' src={item.imageName}></img>
                   <div className="flex flex-col gap-3"> 
                     <h2 className="text-gray-700 text-base md:text-md font-mono font-thin text-left">{item.title}</h2>
                       <span className="flex items-center font-thin font-mono gap-2  ">
@@ -59,7 +61,7 @@ export function CartItems(){
                       </span>
                   </div>
                 </div>
-                  <h2 className="flex min-w-16 text-base md:text-md font-mono pt-5 truncate ">R$: {item.price}</h2>
+                  <h2 className="flex min-w-24 justify-end text-base md:text-md font-mono pt-5 truncate ">{useCurrencyFormatter(item.price * item.quantity)}</h2>
               </div>
             )
           }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   ResizableHandle,
   ResizablePanel,
@@ -14,6 +15,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { useContext, useState, ChangeEvent } from "react";
 import CartContext from "@/contexts/CartContext";
+import useCurrencyFormatter from "@/hooks/useCurrencyFormatter";
 import { WhatsappLogo } from "@phosphor-icons/react";
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -107,7 +109,7 @@ export function Cart() {
     const whatsAppNumber = '5551993605043'
     const whatsAppBody =
       "Gostaria de fazer um pedido 🍰 !\n\n" +
-      "Items:\n" +
+      "Itens:\n" +
       items
         .map((item) => `x${item.quantity} ${item.title}`)
         .join("\n") +
@@ -117,7 +119,7 @@ export function Cart() {
       `${deliveryAddress.street}, ${deliveryAddress.streetNumber} - ${
         deliveryAddress.complement ? deliveryAddress.complement + " - " : ""
       }${deliveryAddress.district}\n\n` +
-      `Total de Items: ${totalItems()}\n` +
+      `Total de Itens: ${totalItems()}\n` +
       `Total do Pedido: R$${totalAmount()}`;
 
     const msg = window.encodeURIComponent(whatsAppBody)
@@ -260,19 +262,19 @@ export function Cart() {
           </div>
         </div>
         {/* PEDIDO */}
-        <div className="mx-4 mt-5 p-4 bg-gray-200 rounded-xl">
+        <div className="mx-4 my-5 p-4 bg-gray-200 rounded-xl">
           <div>
             {/* <h1 className="my-2 border-b border-spacing-5 border-gray-300 font-extralight text-xl text-slate-500 ">Items no carrinho:</h1> */}
             <CartItems />
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col mb-4 items-center">
             <span className="flex py-2 gap-1">
-              <a>Valor total: </a>
-              <a>R${totalAmount()}</a>
+              <a>Quantidade de Itens: </a>
+              <a>{totalItems()}</a>
             </span>
             <span className="flex py-2 gap-1">
-              <a>Quantidade de Items: </a>
-              <a>R${totalItems()}</a>
+              <a>Valor total: </a>
+              <a>{useCurrencyFormatter(totalAmount())}</a>
             </span>
             <Button
               color="success"
@@ -358,12 +360,12 @@ export function Cart() {
               </div>
               <div className="flex flex-col items-center  px-20 pb-3 rounded-3xl mt-3">
                 <span className="flex py-2 gap-1">
-                  <a>Quantidade de Items: </a>
+                  <a>Quantidade de Itens: </a>
                   <a>{totalItems()}</a>
                 </span>
                 <span className="flex py-2 gap-1">
                   <a>Valor total: </a>
-                  <a>R${totalAmount()}</a>
+                  <a>{useCurrencyFormatter(totalAmount())}</a>
                 </span>
                 <Button color="success" isDisabled={!isValid} endContent={<WhatsappLogo />} onClick={() => submitOrderToWhatsApp()}>
                   Enviar pedido

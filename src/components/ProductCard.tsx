@@ -11,6 +11,7 @@ import {
 
 import { CartItems } from './CartItems'
 import { NavLink } from 'react-router-dom'
+import useCurrencyFormatter from '@/hooks/useCurrencyFormatter'
 
 export function ProductCard({ id, title, description ,price, imageName, tags }: CakeProps) {
 
@@ -66,10 +67,8 @@ export function ProductCard({ id, title, description ,price, imageName, tags }: 
           <span className='mx-1'>{description}</span>
         </div>
         
-        <div className='flex justify-between mx-1 p-4'>
-          <span>
-            <a className='text-gray-500'>R$: </a>
-            <a className='font-medium text-2xl  text-gray-900'>{price}</a>
+        <div className='flex justify-between items-center mx-1 p-4'>
+          <span className='font-medium text-lg  text-gray-700 mr-3'>{useCurrencyFormatter(price)}
           </span>
        
           <span className="flex gap-2 justify-center items-center text-xl">
